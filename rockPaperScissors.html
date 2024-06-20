@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+        }
+        body{
+            background: rgb(151, 217, 151);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 400px;
+            background: rgb(206, 217, 189);
+            flex-direction: column;
+        }
+        button{
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .rock{
+            background: blue;
+            color: white;
+        }
+        .paper{
+            background: green;
+            color: white;
+        }
+        .scissors{
+            background: rgb(188, 126, 136);
+            color: white;
+        }
+        .player, .computer{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .result{
+            font-size: 20px;
+            font-weight: 700;
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ROCK PAPER SCISSORS</h1>
+        <button class="rock">rock</button>
+        <button class="paper">paper</button>
+        <button class="scissors">scissors</button>
+       
+            <h3>Player choose:</h3> <div class="player"></div>
+      
+            <h3>Computer choose: </h3><div class="computer"></div>
+       
+        <div class="result">
+            
+        </div>
+    </div>
+
+    <script>
+        const rock=document.querySelector(".rock")
+        const paper=document.querySelector(".paper")
+        const scissors=document.querySelector(".scissors")
+        const result=document.querySelector(".result")
+        const player=document.querySelector(".player")
+        const computer=document.querySelector(".computer")
+
+        const choices=["rock","paper","scissors"]
+        const getComputerChoice=()=>{
+            return choices[Math.floor(Math.random()*3)];
+        } 
+
+        const getResult=(playerChoice,computerChoice)=>{
+            if(playerChoice===computerChoice)
+            {
+                return "its a draw";
+            }
+            else if(playerChoice==="rock" && computerChoice==="scissors"||
+            playerChoice==="scissors" && computerChoice==="paper"||
+            playerChoice==="paper" && computerChoice==="scissors"){
+                return "player Won";
+            }
+            else{
+                return "Comuter Won"
+            }
+        }
+
+        const playGame=(playerChoice)=>{
+            const computerChoice=getComputerChoice();
+            computer.innerHTML=computerChoice
+            player.innerHTML=playerChoice
+            result.innerHTML=getResult(playerChoice,computerChoice)
+        }
+
+
+        rock.addEventListener("click",()=>playGame("rock"))
+        paper.addEventListener("click",()=>playGame("paper"))
+        scissors.addEventListener("click",()=>playGame("scissors"))
+
+
+
+        
+
+    </script>
+</body>
+</html>
